@@ -21,6 +21,11 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [TodoController::class, 'index'])->name('dashboard');
+    Route::get('/todo', [TodoController::class, 'create'])->name('todo.create');
+    Route::post('/todo', [TodoController::class, 'store'])->name('todo.store');
+    Route::get('/todo/{id}', [TodoController::class], 'edit')->name('todo.edit');
+    Route::patch('/todo/{id}', [TodoController::class], 'update')->name('todo.update');
+    Route::delete('/todo/{id}', [TodoController::class], 'destroy')->name('todo.destroy');
 });
 
 Route::middleware('auth')->group(function () {

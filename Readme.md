@@ -21,8 +21,8 @@
 3. använda breeze/sanctum för begynnande kod för inlogg/registrering av användare (TailwindCSS konfigureras även av Breeze)
 4. Skapa `Todo` Model och migration samt controller.
 5. Skapa relation mellan Todos och användare (`user_id till todos`)
-6. Skapa routes och vyer för Todo hantering
-7. Skapa formulär
+6. Skapa routes och vyer med formulär för Todo hantering
+7. Färdigställ controllern
 8. Testa lösningen
 
 ## Utförande 

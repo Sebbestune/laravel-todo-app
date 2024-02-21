@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -12,7 +13,6 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::get();
         return view('dashboard');
     }
 
@@ -21,7 +21,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todo.edit');
     }
 
     /**
@@ -29,23 +29,23 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = new Todo;
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->done = $request->done;
+        $todo->user_id = Auth::id(); 
+        $todo->save();
+
+        return view('dashboard');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        return view('todo.edit');
     }
 
     /**
@@ -53,7 +53,14 @@ class TodoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if(Todo::where('id', $id)->exists()){
+            $todo = Todo::find($id);
+            $todo->title = is_null($request->title) ? $todo->title : $request->title;
+            $todo->description = is_null($request->description) ? $todo->description : $request->description;
+            $todo->done = is_null($request->done) ? $todo->done : $request->done;
+            $todo->save();
+        }
+        return view('dashboard');
     }
 
     /**
