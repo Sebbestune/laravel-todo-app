@@ -33,7 +33,7 @@ class TodoController extends Controller
         $todo->title = $request->title;
         $todo->description = $request->description;
         $todo->done = $request->done;
-        $todo->user_id = Auth::id(); 
+        $todo->user_id = Auth::id();
         $todo->save();
 
         return view('dashboard');
@@ -45,7 +45,16 @@ class TodoController extends Controller
      */
     public function edit(string $id)
     {
-        return view('todo.edit');
+        if (Todo::where('id', $id)->exists()) {
+            $todos = Todo::where('id', $id)->get();
+            return view(
+                'todo.edit',
+                [
+                    'todo' => $todos[0]
+                ],
+            );
+        }
+        return view('dashboard');
     }
 
     /**
@@ -53,7 +62,7 @@ class TodoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if(Todo::where('id', $id)->exists()){
+        if (Todo::where('id', $id)->exists()) {
             $todo = Todo::find($id);
             $todo->title = is_null($request->title) ? $todo->title : $request->title;
             $todo->description = is_null($request->description) ? $todo->description : $request->description;
@@ -64,10 +73,28 @@ class TodoController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     */
+    public function updateDone(Request $request, string $id)
+    {
+        if (Todo::where('id', $id)->exists()) {
+            $todo = Todo::find($id);
+            $todo->done = abs($todo->done -1);
+            $todo->save();
+        }
+        return view('dashboard');
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        if (Todo::where('id', $id)->exists()) {
+            $todo = Todo::find($id);
+            $todo->delete();
+        }
+        return view('dashboard');
+
     }
 }
