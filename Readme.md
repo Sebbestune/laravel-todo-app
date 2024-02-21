@@ -98,7 +98,39 @@ Migrera: `php artisan migrate`
 
 Controller: `php artisan make:controller --resource TodoController`
 
+Vi implementerar kontrollern mer efter relatering mot användare.
+
 ### Tips no. 2
+
+Det är alltid en bra idé att lägga sina projekt på github, privata repon för små kul tester eller egna projekt och publika om ni har lust att visa upp det ni jobbar med.
 
 git remote add origin https://github.com/Sebbestune/...
 git push -u origin main
+
+### Kopplar användare till todos
+
+Skapar ny migration: `php make:migration add_user_id_fk_to_todos`
+
+```
+public function up(): void
+    {
+        Schema::table('todos', function (Blueprint $table) {
+            $table->integer('user_id');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('todos', function (Blueprint $table) {
+            if (Schema::hasColumn('todos', 'user_id'))
+            Schema::table('todos', function (Blueprint $table) {
+                $table->dropColumn('user_id');
+            });
+        });
+    }
+```
+
+Migrerar igen: `php artisan migrate`

@@ -7,11 +7,20 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+            @foreach (Auth::user()->todos as $todo)
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+
+                    <h2 class="font-semibold text-l text-gray-800 leading-tight">{{ $todo->title }}</h2>
+                    <p>{{$todo->description}}</p>
+                    <p class="font-semibold">{{$todo->done ? __('Klar') : __('Inte klar')}}</p>
+
                 </div>
             </div>
+            @endforeach
+
+            
         </div>
     </div>
 </x-app-layout>
