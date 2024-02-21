@@ -74,3 +74,31 @@ sudo npm install && sudo npm upgrade
 
 - Starta om terminale du kör npm i
 - Kör kommandot npm run dev
+
+### Tips no 1
+
+Använd gärna git även i lekprojekt! Både bra för övning av git och ifall projektet växer till något intressant.
+
+### Skapa Todo modell och hela MVC
+
+Modell och migration: `php artisan make:model -m Todo`
+
+I migrationsfilen
+```
+Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->boolean('done');
+            $table->timestamps();
+        });
+```
+
+Migrera: `php artisan migrate`
+
+Controller: `php artisan make:controller --resource TodoController`
+
+### Tips no. 2
+
+git remote add origin https://github.com/Sebbestune/...
+git push -u origin main
