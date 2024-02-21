@@ -14,7 +14,6 @@
                         <a href="{{ route('register') }}">Registrera</a>
                     </x-primary-button>
 
-
                 </div>
             </div>
         </div>
