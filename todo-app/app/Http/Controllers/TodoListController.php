@@ -15,4 +15,17 @@ class TodoListController extends Controller
     {
         return view('dashboard');
     }
+
+    /**
+     * Show the specified resource.
+     */
+    public function show(string $id)
+    {
+        if (TodoList::where('id', $id)->exists()) {
+            $todolist = TodoList::where('id', $id)->get();
+
+            return view('todolist.index', ['todolist' => $todolist[0]]);
+        }
+        return view('dashboard');
+    }
 }

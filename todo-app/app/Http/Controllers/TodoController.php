@@ -11,10 +11,10 @@ class TodoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('dashboard');
-    }
+    // public function index()
+    // {
+    //     return view('todolist.index');
+    // }
 
     /**
      * Show the form for creating a new resource.

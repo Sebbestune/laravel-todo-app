@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12">
                 <div class="p-6 text-gray-900">
                     <x-primary-button class="ms-3">
-                        <a href="{{ route('todo.create') }}">Skapa ny</a>
+                        <a href="{{ route('todo.create', $todolist->id) }}">Skapa ny</a>
                     </x-primary-button>
                 </div>
             </div>
@@ -19,16 +19,15 @@
             @foreach ($todolist->todos as $todo)
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12">
                 <div class="p-6 text-gray-900">
-
                     <h2 class="font-semibold text-l text-gray-800 leading-tight">{{ $todo->title }}</h2>
                     <p>{{$todo->description}}</p>
                     <p class="font-semibold">{{$todo->done ? __('Klar') : __('Inte klar')}}</p>
 
                     <x-primary-button class="ms-3">
-                        <a href="{{ route('todo.edit', $todo->id) }}">Redigera</a>
+                        <a href="{{ route('todo.edit', ['todolistid' => $todolist->id, 'id' => $todo->id]) }}">Redigera</a>
                     </x-primary-button>
 
-                    <form method="post" action="{{ route('todo.destroy', $todo->id) }}" class="">
+                    <form method="post" action="{{ route('todo.destroy', ['todolistid' => $todolist->id, 'id' => $todo->id]) }}" class="">
                         @csrf
                         @method('delete')
                         <x-primary-button class="ms-3">

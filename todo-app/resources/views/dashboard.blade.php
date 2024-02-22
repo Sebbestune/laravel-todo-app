@@ -24,10 +24,10 @@
                     <p>{{$list->description}}</p>
 
                     <x-primary-button class="ms-3">
-                        <a href="{{ route('todolist.edit', $todo->id) }}">Redigera</a>
+                        <a href="{{ route('todolist.edit', $list->id) }}">Redigera</a>
                     </x-primary-button>
 
-                    <form method="post" action="{{ route('todolist.destroy', $todo->id) }}" class="">
+                    <form method="post" action="{{ route('todolist.destroy', $list->id) }}" class="">
                         @csrf
                         @method('delete')
                         <x-primary-button class="ms-3">

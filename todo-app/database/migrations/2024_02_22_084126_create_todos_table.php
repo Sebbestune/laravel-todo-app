@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->boolean('done');
-            $table->foreignId('list_id')->constrained('todo_lists');
+            $table->foreignId('todo_list_id')->constrained('todo_lists');
             $table->timestamps();
         });
     }
