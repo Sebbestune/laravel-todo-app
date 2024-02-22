@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12">
                 <div class="p-6 text-gray-900">
                     <x-primary-button class="ms-3">
-                        <a href="{{ route('todo.create', $todolist->id) }}">Skapa ny</a>
+                        <a href="{{ route('todo.create', ['todolistid' => $todolist->id]) }}">Skapa ny</a>
                     </x-primary-button>
                 </div>
             </div>

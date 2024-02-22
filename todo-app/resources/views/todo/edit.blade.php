@@ -12,7 +12,7 @@
                 <div class="p-6 text-gray-900">
 
                     @isset($todo)
-                    <form method="post" action="{{ route('todo.update', $todo->id) }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('todo.update', ['todolistid' => $todolistid, $todo->id]) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('patch')
 
@@ -23,7 +23,7 @@
                     </form>
                     @endisset
                     @empty($todo)
-                    <form method="post" action="{{ route('todo.store') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('todo.store', ['todolistid' => $todolistid]) }}" class="mt-6 space-y-6">
                         @csrf
                         @method('post')
 

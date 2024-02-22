@@ -22,18 +22,19 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [TodoListController::class, 'index'])->name('dashboard');                          //done
-    Route::get('/todolist/create', [TodoListController::class, 'create'])->name('todolist.create');             //done
-    Route::post('/todolist', [TodoListController::class, 'store'])->name('todolist.store');                     //done
+    Route::get('/dashboard', [TodoListController::class, 'index'])->name('dashboard');                          
+    Route::get('/todolist/create', [TodoListController::class, 'create'])->name('todolist.create');             
+    Route::post('/todolist', [TodoListController::class, 'store'])->name('todolist.store');                     
 
-    Route::get('/todolist/{id}', [TodoListController::class, 'show'])->name('todolist.show');                   //done
-    Route::get('/todolist/{id}/edit', [TodoListController::class, 'edit'])->name('todolist.edit');              //done
-    Route::patch('/todolist/{id}', [TodoListController::class, 'update'])->name('todolist.update');             //done
-    Route::delete('/todolist/{id}', [TodoListController::class, 'destroy'])->name('todolist.destroy');          //done
+    Route::get('/todolist/{id}', [TodoListController::class, 'show'])->name('todolist.show');                  
+    Route::get('/todolist/{id}/edit', [TodoListController::class, 'edit'])->name('todolist.edit');              
+    Route::patch('/todolist/{id}', [TodoListController::class, 'update'])->name('todolist.update');             
+    Route::delete('/todolist/{id}', [TodoListController::class, 'destroy'])->name('todolist.destroy');          
     
     Route::get('/todolist/{todolistid}/todo/create', [TodoController::class, 'create'])->name('todo.create');
-    Route::post('/todolist/{todolistid}/todo', [TodoController::class, 'store'])->name('todo.store');
     Route::get('/todolist/{todolistid}/todo/{id}', [TodoController::class, 'edit'])->name('todo.edit');
+
+    Route::post('/todolist/{todolistid}/todo', [TodoController::class, 'store'])->name('todo.store');
     Route::patch('/todolist/{todolistid}/todo/{id}', [TodoController::class, 'update'])->name('todo.update');
     Route::delete('/todolist/{todolistid}/todo/{id}', [TodoController::class, 'destroy'])->name('todo.destroy');
 
