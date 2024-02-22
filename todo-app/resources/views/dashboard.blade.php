@@ -24,6 +24,10 @@
                     <p>{{$list->description}}</p>
 
                     <x-primary-button class="ms-3">
+                        <a href="{{ route('todolist.show', $list->id) }}">Visa</a>
+                    </x-primary-button>
+
+                    <x-primary-button class="ms-3">
                         <a href="{{ route('todolist.edit', $list->id) }}">Redigera</a>
                     </x-primary-button>
 
