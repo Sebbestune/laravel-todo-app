@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('todos', function (Blueprint $table) {
-            $table->integer('user_id');
+        Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->boolean('done');
+            $table->foreignId('list_id')->constrained('todo_lists');
+            $table->timestamps();
         });
     }
 
@@ -21,11 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('todos', function (Blueprint $table) {
-            if (Schema::hasColumn('todos', 'user_id'))
-            Schema::table('todos', function (Blueprint $table) {
-                $table->dropColumn('user_id');
-            });
-        });
+        Schema::dropIfExists('todos');
     }
 };

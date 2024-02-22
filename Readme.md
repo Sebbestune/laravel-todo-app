@@ -134,3 +134,34 @@ public function up(): void
 ```
 
 Migrerar igen: `php artisan migrate`
+
+# Lägga till listor
+
+Vi skapar en ny databas som vi kommer att använda i den här versionen av projektet:
+
+.env
+```
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:sZ2JwS4JjIau6JFLyUzkrXM3vq6mgLbukhnkv16+EdI=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=mariadbv2
+DB_USERNAME=mariadbv2
+DB_PASSWORD=mariadbv2
+```
+
+## Skapa TodoList modell 
+
+Skapa TodoList modell och migration samt ändra lite tidigare delar
+
+## Snygga till routes
+
